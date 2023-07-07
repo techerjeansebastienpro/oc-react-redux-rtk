@@ -1,7 +1,7 @@
-import { configureStore, createAction, createReducer } from "@reduxjs/toolkit"
+import { combineReducers, configureStore, createAction, createReducer } from "@reduxjs/toolkit"
+import { cartSlice } from "../features/cart/cartSlice";
 
 let state = {
-    value: null,
     owner: {},
     list: [
     ]
@@ -28,29 +28,18 @@ export const updateFirstName = createAction('UPDATE_FIRSTNAME', (firstName) => {
 })
 
 const reducer = createReducer(state, {
-    [addProduct]: (currentState, action) => {
-        const listWithNewProduct = [...currentState.list, action.payload]
-            return {...currentState, list: listWithNewProduct}
-    },
-    [removeProduct]: (currentState, action) => {
-        const list = currentState.list.filter(
-            (item, index) => index !== action.payload
-        )
-        return {...currentState, list: list}
-    },
-    [applyVoucher]: (currentState, action) => {
-        const withVoucherList = currentState.list.map(
-            item => item.title === 'Super Crémeux' ? ({...item, price: action.payload.price}) : item
-        )
-        return {...currentState, list: withVoucherList}
-    },
     [updateFirstName]: (currentState, action) => {
         const owner = {...currentState.owner, firstName: action.payload}
-        return {...currentState, owner}
+        return {...currentState, ...owner}
     }
 })
 
-export const store = configureStore({
-  preloadedState: state,
-  reducer,
-});
+export const store = configureStore(
+    {
+        preloadedState: state,
+        reducer: combineReducers({
+            owner: reducer,
+            list: cartSlice.reducer,
+        })
+    }
+)
