@@ -1,10 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { PouletCroquant, SuperCremeux } from "../common/models";
 
 let state = {
   value: null,
   owner: {},
-  list: [SuperCremeux, PouletCroquant],
+  list: [],
 };
 
 const reducer = (currentState, action) => {
