@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 let state = {
-  value: null,
-  owner: {},
-  list: [],
+    value: null,
+    owner: {},
+    list: [
+    ]
 };
 
 const reducer = (currentState, action) => {
