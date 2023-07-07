@@ -8,7 +8,7 @@ export const isVoucherAvailable = (state) => getProductList(state).find((product
 
 export const getQuantityProductPerName = (name) => (state) => getProductList(state).filter((product) => product.title === name).length
 
-export  const getListQuantityProductPername = (state) => Object.values(ProductList).map((product) => ({
+export const getListQuantityProductPerName = (state) => Object.values(ProductList).map((product) => ({
     title: product.title,
     quantity: getQuantityProductPerName(product.title)(state),
 }));

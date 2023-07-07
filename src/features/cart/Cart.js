@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { getListQuantityProductPername } from "../../app/selectors";
+import { getListQuantityProductPerName } from "../../app/selectors";
 
 export const Cart = () => {
-    const list = useSelector(getListQuantityProductPername)
+    const list = useSelector(getListQuantityProductPerName)
    return <div className="Selection">
     {
         list?.map(
