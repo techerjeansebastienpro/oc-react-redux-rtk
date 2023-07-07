@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useStore } from "react-redux";
+import { updateFirstName } from "../../app/store";
 
 export const Owner = () => {
   const store = useStore();
@@ -7,16 +8,14 @@ export const Owner = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    const firstName = evt.currentTarget.firstName.value;
-    store.dispatch({
-      type: "UPDATE_FIRSTNAME",
-      payload: firstName,
-    });
-  };
+    const firstName = evt.currentTarget.firstName.value
+    store.dispatch(updateFirstName(firstName)) 
+  }
 
   useEffect(() => {
     store.subscribe(() => setOwner(store.getState().owner));
   });
+   
 
   return (
     <form onSubmit={handleSubmit} className="OwnerForm">

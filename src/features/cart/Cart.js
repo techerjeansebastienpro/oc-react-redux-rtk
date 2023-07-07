@@ -3,7 +3,6 @@ import { getListQuantityProductPername } from "../../app/selectors";
 
 export const Cart = () => {
     const list = useSelector(getListQuantityProductPername)
-    console.log(list)
    return <div className="Selection">
     {
         list?.map(
